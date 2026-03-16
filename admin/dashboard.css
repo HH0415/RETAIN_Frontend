@@ -1,0 +1,14 @@
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th {
+    text-align: left;
+    color: var(--accent);
+    padding: 15px;
+    border-bottom: 2px solid var(--accent);
+}
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}

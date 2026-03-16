@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 資費健檢</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_USER</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">資費健檢</a>
+                <a href="environment.html">環境感知</a>
+                <a href="../feedback/feedback.html">客服頻道</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>資費健檢報告</h1>
+        <div class="dashboard-grid">
+            <div class="card-panel highlight-card">
+                <h2>💡 降級建議</h2>
+                <p>平均月流量：10.5GB</p>
+                <div class="savings-box">
+                    <span>每月省下</span>
+                    <h2 class="price-tag">$500</h2>
+                </div>
+                <button class="btn-primary">執行優化方案</button>
+            </div>
+        </div>
+    </div>
+    <script src="../shared/guard.js"></script>
+</body>
+</html>

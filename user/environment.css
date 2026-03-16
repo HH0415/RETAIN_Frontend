@@ -1,0 +1,15 @@
+#weatherCard {
+    border-left-color: var(--danger);
+    max-width: 600px;
+}
+.tip-box {
+    background: rgba(0, 242, 255, 0.05);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.tip-box .label {
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 5px;
+}

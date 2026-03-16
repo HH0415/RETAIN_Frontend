@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | ROI看板</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="analytics.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_ADMIN</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html">流失監控</a>
+                <a href="analytics.html" class="active">ROI 看板</a>
+                <a href="../feedback/feedback.html">通訊頻道</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>戰略效益與 ROI 看板</h1>
+        <div class="stats-grid">
+            <div class="card-panel">
+                <p>本月成功挽留人數</p>
+                <h2 class="stat-value">128 <span>人</span></h2>
+            </div>
+            <div class="card-panel">
+                <p>節省營銷預算 (估計)</p>
+                <h2 class="stat-value" style="color:var(--success)">$192,000</h2>
+            </div>
+            <div class="card-panel">
+                <p>系統投資回報率 (ROI)</p>
+                <h2 class="stat-value" style="color:var(--accent)">415%</h2>
+            </div>
+        </div>
+        <div class="card-panel chart-container">
+            <h3>挽留趨勢分析</h3>
+            <div class="mock-chart">
+                <div class="bar" style="height: 40%"></div>
+                <div class="bar" style="height: 65%"></div>
+                <div class="bar" style="height: 50%"></div>
+                <div class="bar" style="height: 85%"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../shared/guard.js"></script>
+</body>
+</html>

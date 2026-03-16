@@ -1,0 +1,15 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+.highlight-card {
+    border-left-color: var(--success);
+}
+.savings-box {
+    margin: 25px 0;
+}
+.price-tag {
+    font-size: 3rem;
+    color: var(--accent);
+}

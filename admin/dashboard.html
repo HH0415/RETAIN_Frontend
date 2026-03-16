@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 流失預警</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_ADMIN</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">流失監控</a>
+                <a href="analytics.html">ROI看板</a>
+                <a href="../feedback/feedback.html">通訊頻道</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>高風險流失名單</h1>
+        <div class="card-panel">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>用戶 ID</th>
+                        <th>風險分數</th>
+                        <th>主因分析</th>
+                    </tr>
+                </thead>
+                <tbody id="churnList"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../shared/guard.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

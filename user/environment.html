@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 環境感知</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_USER</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html">資費健檢</a>
+                <a href="environment.html" class="active">環境感知</a>
+                <a href="../feedback/feedback.html">客服頻道</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>環境感知終端</h1>
+        <div class="env-grid">
+            <div class="card-panel" id="weatherCard">
+                <h2 id="weatherStatus">🌧️ 氣候警告：大雨</h2>
+                <p>目前偵測座標：台中市大里區</p>
+                <div class="tip-box">
+                    <p class="label">物理干擾說明</p>
+                    <p id="weatherTip">大氣中高含量的水分子正吸收 5G 毫米波訊號，會導致連線速率下降與延遲增加。</p>
+                </div>
+                <button class="btn-primary" id="switchBtn">一鍵切換 4G LTE 模式</button>
+            </div>
+        </div>
+    </div>
+    <script src="../shared/guard.js"></script>
+    <script src="environment.js"></script>
+</body>
+</html>
