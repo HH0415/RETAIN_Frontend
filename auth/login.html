@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 登入</title>
+    <title>RETAIN | 系統登入</title>
     <link rel="stylesheet" href="../shared/global.css">
-    <style>
-        .auth-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .auth-card { width: 100%; max-width: 420px; }
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body class="auth-page">
     <div class="card-panel auth-card">
-        <h1 style="margin-bottom: 30px; font-weight: 900;">系統登入</h1>
+        <h1>系統登入</h1>
         <form id="loginForm">
             <div class="form-group">
                 <label>帳號 (admin / user)</label>
@@ -24,9 +21,11 @@
             </div>
             <button type="submit" class="btn-primary">驗證進入</button>
         </form>
-        <p style="text-align: center; margin-top: 25px; opacity: 0.6;">
-            新進人員？ <a href="register.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">建立帳號</a>
-        </p>
+        <div class="auth-footer">
+            <a href="forgot.html">忘記密碼？</a>
+            <span class="divider">|</span>
+            <a href="register.html">建立帳號</a>
+        </div>
     </div>
     <script src="login.js"></script>
 </body>

@@ -131,7 +131,7 @@ body {
     font-size: 0.9rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .top-nav {
         height: auto;
         padding: 15px 5%;
@@ -142,9 +142,11 @@ body {
         margin-left: 0;
         flex-direction: column;
         width: 100%;
+        gap: 15px;
     }
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 15px;
     }
 }

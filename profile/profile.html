@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 個人設定</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_PROFILE</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a id="backBtn" href="#">[ 返回系統 ]</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>個人設定</h1>
+        
+        <div class="profile-grid">
+            <div class="card-panel">
+                <h2>基本資訊</h2>
+                <div class="info-group">
+                    <label>帳號 ID</label>
+                    <p id="displayId">yhong_tactical</p>
+                </div>
+                <div class="info-group">
+                    <label>電子郵件</label>
+                    <p id="displayEmail">yhong@telecom.com</p>
+                </div>
+                <div class="info-group">
+                    <label>當前資費</label>
+                    <p id="displayPlan" style="color:var(--accent)">5G 飆網 999 吃到飽</p>
+                </div>
+            </div>
+
+            <div class="card-panel">
+                <h2>安全權限變更</h2>
+                <form id="pwForm">
+                    <div class="form-group">
+                        <label>舊密碼</label>
+                        <input type="password" id="oldPw" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label>新密碼</label>
+                        <input type="password" id="newPw" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label>確認新密碼</label>
+                        <input type="password" id="confirmPw" class="input-field" required>
+                    </div>
+                    <button type="submit" class="btn-primary">更新密碼</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/guard.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+}
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+.auth-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
