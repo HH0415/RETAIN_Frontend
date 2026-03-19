@@ -7,27 +7,17 @@
     font-family: "Inter", "Microsoft JhengHei", sans-serif;
 }
 
-:root {
-    --bg-main: #0b1016;
-    --surface: #161b22;
-    --accent: #00f2ff;
-    --text-main: #e6edf3;
-    --success: #2ecc71;
-    --danger: #ff4b2b;
-}
-
 body {
-    background: var(--bg-main);
-    color: var(--text-main);
+    background: #ffffff;
+    color: #000000;
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 .top-nav {
     display: flex;
     align-items: center;
-    background: var(--surface);
-    border-bottom: 2px solid var(--accent);
+    background: #ffffff;
+    border-bottom: 2px solid #000000;
     padding: 0 5%;
     height: 70px;
     position: sticky;
@@ -37,9 +27,8 @@ body {
 
 .nav-logo {
     font-weight: 900;
-    color: var(--accent);
+    color: #000000;
     font-size: 1.2rem;
-    white-space: nowrap;
 }
 
 .nav-right-group {
@@ -55,33 +44,28 @@ body {
 }
 
 .nav-links a {
-    color: white;
+    color: #000000;
     text-decoration: none;
-    opacity: 0.6;
     font-size: 0.9rem;
-    transition: 0.3s;
-    white-space: nowrap;
+    font-weight: bold;
 }
 
 .nav-links a:hover, .nav-links a.active {
-    opacity: 1;
-    color: var(--accent);
+    text-decoration: underline;
 }
 
 .logout-btn {
-    background: transparent;
-    color: var(--danger);
-    border: 1px solid var(--danger);
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
     padding: 6px 15px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
-    white-space: nowrap;
 }
 
 .logout-btn:hover {
-    background: var(--danger);
-    color: white;
+    background: #000000;
+    color: #ffffff;
 }
 
 .container {
@@ -91,41 +75,44 @@ body {
 }
 
 .card-panel {
-    background: var(--surface);
-    border-left: 4px solid var(--accent);
+    background: #ffffff;
+    border: 2px solid #000000;
     padding: 30px;
     margin-bottom: 25px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-}
-
-.btn-primary {
-    display: block;
-    width: 100% !important;
-    background: var(--success);
-    color: #000;
-    border: none;
-    padding: 15px;
-    font-weight: 900;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-top: 15px;
 }
 
 .input-field {
     display: block;
     width: 100% !important;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ffffff;
+    border: 2px solid #000000;
     padding: 12px;
-    color: white;
+    color: #000000;
     outline: none;
     margin-bottom: 20px;
 }
 
+.btn-primary {
+    display: block;
+    width: 100% !important;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    padding: 15px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-primary:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
 .form-group label {
     display: block;
-    color: var(--accent);
+    color: #000000;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 0.9rem;
@@ -147,6 +134,5 @@ body {
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
     }
 }

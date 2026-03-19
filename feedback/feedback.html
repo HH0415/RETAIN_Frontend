@@ -16,10 +16,31 @@
         </div>
     </nav>
     <div class="container">
-        <h1>雙向通訊頻道</h1>
+        <h1>客服頻道</h1>
         <div class="card-panel">
             <textarea id="msg" class="input-field" style="height:200px; margin-bottom:20px;" placeholder="輸入意見回饋..."></textarea>
             <button class="btn-primary" onclick="alert('送出成功，系統正進行情緒分析...')">發送訊息</button>
+        </div>
+    </div>
+    <div>
+     <div class="container">
+            <div class="card-panel highlight-card">
+                <h2>管理者回覆</h2>
+                <p></p>
+                <div class="savings-box">
+                    <div>
+                        <span>回覆時間：2026/03/20-20：03</span>
+                    </div>
+                    <span>上次訊息：</span>
+                    <text>目前在北區一中街室內，5G 訊號頻繁斷線。雖然「環境感知」顯示天氣晴朗，但實測速率遠低於合約標準。請確認該區基地台是否正在進行硬體維修，或系統能提供切換建議。</text>
+                    <div>
+                    <span>回覆內容：</span>   
+                    <text>針對 YHONG 使用者於台中北區回報的訊號弱區案件，系統已透過關鍵字過濾機制將此工單自動提升至優先處理層級，並經由後端 API 完成初步診斷。目前北區基地台硬體數據顯示運作正常，訊號不穩主因為該商圈高密度建築對 5G 高頻微波造成的穿透性干擾，並非硬體故障所致。考量到您的平均月用量僅為 10.5GB 且目前支付高額月租，系統已根據資費健檢邏輯建議您調降至 499 方案以每月省下 $500，並同步在您的個人專屬優惠中核發一組訊號補償方案，目前該案已進入自動化結案程序並轉交工程部門列入長期監控。</text>
+                    </div>
+                    
+                </div>
+                <button class="btn-primary">詳細聊聊</button>
+            </div>
         </div>
     </div>
     <script src="feedback.js"></script>

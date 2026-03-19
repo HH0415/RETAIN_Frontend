@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 客服管理</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="feedback_admin.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_COMM</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a id="backBtn" href="../admin/dashboard.html">[ 返回系統 ]</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>客服頻道</h1>
+        
+        <div class="feedback-list">
+            <div class="card-panel">
+                <div>
+                    <h2>案件編號：#TK-20260319-01</h2>
+                    <p>提交時間：2026/03/20 - 20:03</p>
+                    <div class="status-bar">使用者訊息：</div>
+                    <div class="message-text">
+                        目前在北區一中街室內，5G 訊號頻繁斷線。雖然「環境感知」顯示天氣晴朗，但實測速率遠低於合約標準。請確認該區基地台是否正在進行硬體維修，或系統能提供切換建議。
+                    </div>
+                </div>
+                <div>
+                    <div class="status-bar">回覆狀態：尚未回覆</div>
+                    <button class="btn-primary" onclick="handleReply()">回覆該內容</button>
+                </div>
+            </div>
+
+            <div class="card-panel">
+                <div>
+                    <h2>案件編號：#TK-20260319-02</h2>
+                    <p>提交時間：2026/03/20 - 20:05</p>
+                    <div class="status-bar">使用者訊息：</div>
+                    <div class="message-text">
+                        目前位於大里區室內，訊號強度僅剩兩格，上傳速度嚴重受限，請協助確認該區基地台負荷狀況。
+                    </div>
+                </div>
+                <div>
+                    <div class="status-bar">回覆狀態：尚未回覆</div>
+                    <button class="btn-primary" onclick="handleReply()">回覆該內容</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="feedback_admin.js"></script>
+    <script src="../shared/guard.js"></script>
+</body>
+</html>
