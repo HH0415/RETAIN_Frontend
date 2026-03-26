@@ -3,53 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 初始資費問卷</title>
-    <link rel="stylesheet" href="../shared/global.css">
-    <link rel="stylesheet" href="../auth/login.css"> <script src="../shared/guard.js"></script>
+    <title>RETAIN | 資費評估問卷</title>
+    <link rel="stylesheet" href="questionnaire.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-logo">RETAIN_SYSTEM</div>
-        <div class="nav-right-group">
-            <span style="color: white; margin-right: 15px;">您好，使用者</span>
-            <button onclick="logout()" class="btn-primary" style="padding: 5px 15px; font-size: 0.9em;">登出</button>
-        </div>
-    </nav>
-    
-    <div class="container login-container" style="max-width: 500px;">
-        <h1 class="login-title">現有資費評估問卷</h1>
-        
-        <div class="card-panel">
-            <p style="text-align: center; color: #555; margin-bottom: 20px;">
-                為了進行精準的資費健檢，請提供您目前的電信使用狀況。
-            </p>
-            <form id="qaForm">
-                <div class="form-group">
-                    <label>目前使用的電信業者</label>
-                    <select id="provider" class="input-field" required>
-                        <option value="" disabled selected>請選擇...</option>
-                        <option value="中華電信">中華電信</option>
-                        <option value="台灣大哥大">台灣大哥大</option>
-                        <option value="遠傳電信">遠傳電信</option>
-                        <option value="其他">其他</option>
-                    </select>
-                </div>
-                
-                <div class="form-group password-group">
-                    <label>目前月租費 (新台幣/月)</label>
-                    <input type="number" id="bill" class="input-field" placeholder="例如: 1399" min="0" required>
-                </div>
 
-                <div class="form-group password-group">
-                    <label>每月平均上網用量 (GB)</label>
-                    <input type="number" id="usage" class="input-field" placeholder="若吃到飽請填 999" min="0" required>
-                </div>
-                
-                <button type="button" id="submitQaBtn" class="btn-primary login-btn">開始資費健檢</button>
-            </form>
+    <h1 class="page-title">現有資費評估問卷</h1>
+
+    <div class="questionnaire-box">
+        <p class="description">
+            為了進行精準的資費健檢，請提供您目前的電信使用狀況。
+        </p>
+
+        <form id="questForm">
+            <div class="form-group">
+                <label>目前使用的電信業者</label>
+                <select id="currentProvider" class="input-field" required>
+                    <option value="" disabled selected>請選擇...</option>
+                    <option value="中華電信">中華電信</option>
+                    <option value="台灣大哥大">台灣大哥大</option>
+                    <option value="遠傳電信">遠傳電信</option>
+                    <option value="亞太電信">亞太電信</option>
+                    <option value="台灣之星">台灣之星</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>目前月租費 (新台幣/月)</label>
+                <input type="number" id="currentBill" class="input-field" placeholder="例如：1399" required>
+            </div>
+
+            <div class="form-group">
+                <label>每月平均上網用量 (GB)</label>
+                <input type="number" id="avgUsage" class="input-field" placeholder="若吃到飽請填 999" required>
+            </div>
+
+            <div id="statusMsg" class="status-msg"></div>
+
+            <button type="submit" id="submitBtn" class="btn-black">開始資費健檢</button>
+        </form>
+
+        <div class="footer-links">
+            <button onclick="logout()" class="logout-link">登出系統</button>
         </div>
     </div>
 
+    <script src="../shared/guard.js"></script>
     <script src="questionnaire.js"></script>
 </body>
 </html>

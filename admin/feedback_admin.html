@@ -9,42 +9,26 @@
 </head>
 <body>
     <nav class="top-nav">
-        <div class="nav-logo">RETAIN_ADMIN</div>
+        <a href="dashboard.html" class="nav-logo">RETAIN_ADMIN</a>
         <div class="nav-right-group">
-            <div class="nav-links">
-                <a href="dashboard.html">儀表板</a>
-                <a href="plans.html">方案資料維護</a>
-                <a href="users.html">使用者管理</a>
-                <a href="feedback_admin.html" class="active">留言板回覆</a>
-            </div>
+            <a href="dashboard.html" class="nav-link">儀表板</a>
+            <a href="plans.html" class="nav-link">方案資料維護</a>
+            <a href="users.html" class="nav-link">使用者管理</a>
+            <a href="feedback_admin.html" class="nav-link active">留言板回覆</a>
             <button onclick="logout()" class="logout-btn">登出</button>
         </div>
     </nav>
     
-    <div class="container">
+    <div class="container admin-main-content">
         <h1>留言板回覆</h1>
-        
-        <div class="ticket-box">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                <h2>工單編號：#TK-20260322-01</h2>
-                <div class="status-badge">狀態：待回覆</div>
-            </div>
-            
-            <p><strong>回報使用者：</strong> YHONG</p>
-            <p><strong>發生時間：</strong> 2026/03/22 19:10</p>
-            
-            <div class="msg-content">
-                <strong>使用者訊息內容：</strong><br><br>
-                台中市大里區室內 5G 幾乎斷線，請確認基地台狀況。
-            </div>
-            
-            <form>
-                <label style="font-weight: bold;">管理員回覆內容：</label>
-                <textarea class="input-field" rows="4" placeholder="請輸入回覆內容，送出後將同步至使用者的雙向通訊頻道..." required></textarea>
-                <button type="button" class="btn-primary" onclick="alert('回覆已成功送出並結案！')">送出回覆並結案</button>
-            </form>
+        <p class="subtitle">處理來自使用者的連線問題回報與服務建議</p>
+
+        <div id="msg-container">
+            <div style="text-align: center; padding: 50px;">正在檢查 RetainDB 中的待處理留言...</div>
         </div>
     </div>
+    
     <script src="../shared/guard.js"></script>
+    <script src="feedback_admin.js"></script>
 </body>
 </html>

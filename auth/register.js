@@ -1,27 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const regForm = document.getElementById('registerForm');
-    
-    regForm.addEventListener('submit', async (e) => {
+    const registerForm = document.getElementById('registerForm');
+    const msg = document.getElementById('statusMsg');
+    const registerBtn = document.getElementById('registerBtn');
+
+    registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const username = document.getElementById('reg-username').value;
-        const password = document.getElementById('reg-password').value;
-        const msg = document.getElementById('regStatus');
+
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>兩次輸入的密碼不一致！</span>";
+            return;
+        }
+
+        registerBtn.disabled = true;
+        registerBtn.textContent = "正在建立帳號...";
+        msg.innerHTML = "";
 
         try {
-            const res = await fetch('http://localhost:5164/api/Auth/register', {
+            const response = await fetch('http://localhost:5164/api/Auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ Username: username, Password: password })
+                body: JSON.stringify({ 
+                    Username: username, 
+                    Email: email, 
+                    Password: password,
+                    Role: "User" 
+                })
             });
 
-            if (res.ok) {
-                alert("註冊成功！請直接登入。");
-                window.location.href = 'login.html';
+            if (response.ok) {
+                msg.innerHTML = "<span style='color: #2e7d32;'>註冊成功！3秒後導向登入頁...</span>";
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 3000);
             } else {
-                msg.textContent = await res.text();
+                const errText = await response.text();
+                msg.innerHTML = `<span style='color: #d32f2f;'>註冊失敗：${errText || "帳號可能已存在"}</span>`;
+                registerBtn.disabled = false;
+                registerBtn.textContent = "建立帳號";
             }
-        } catch (err) {
-            msg.textContent = "連線失敗";
+        } catch (error) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線失敗</span>";
+            registerBtn.disabled = false;
+            registerBtn.textContent = "建立帳號";
         }
     });
 });

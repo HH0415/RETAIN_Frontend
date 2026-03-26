@@ -1,50 +1,54 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-        if (typeof logout === 'function') logout();
-    });
-
     const token = localStorage.getItem('retain_jwt');
-    if (!token) return;
+    const tableBody = document.getElementById('user-list-body');
 
     try {
-        const res = await fetch('http://localhost:5164/api/Admin/users', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const [usersRes, plansRes] = await Promise.all([
+            fetch('http://localhost:5164/api/Users', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            }),
+            fetch('http://localhost:5164/api/Plans')
+        ]);
 
-        if (!res.ok) throw new Error("無法取得使用者列表");
-        const users = await res.json();
+        if (!usersRes.ok) throw new Error("權限不足或 API 錯誤");
+        
+        const users = await usersRes.json();
+        const plans = await plansRes.json();
 
-        const tbody = document.getElementById('userTableBody');
-        tbody.innerHTML = ''; 
+        tableBody.innerHTML = '';
 
-        if (users.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">目前系統尚無使用者資料</td></tr>';
-            return;
-        }
+        const customers = users.filter(u => u.role !== 'Admin');
 
-        users.forEach(u => {
-            const isHighRisk = u.currentBill > 1000;
-            const riskHtml = isHighRisk 
-                ? `<span class="risk-high">高風險 (溢繳嚴重)</span>` 
-                : `<span class="risk-low">穩定</span>`;
+        customers.forEach(user => {
+            let riskLevel = "低風險";
+            let riskClass = "risk-low";
 
-            const provider = u.currentProvider ? u.currentProvider : '尚未填寫問卷';
-            const bill = u.currentBill ? `$${u.currentBill}` : '-';
+            const betterPlans = plans.filter(p => p.dataLimit >= user.avgUsage && p.monthlyPrice < user.currentBill);
+            
+            if (betterPlans.length > 3) {
+                riskLevel = "極高風險";
+                riskClass = "risk-high";
+            } else if (betterPlans.length > 0) {
+                riskLevel = "中等風險";
+                riskClass = "risk-medium";
+            }
 
-            const tr = `
+            const row = `
                 <tr>
-                    <td>${u.id}</td>
-                    <td>${u.username}</td>
-                    <td>${provider}</td>
-                    <td>${bill}</td>
-                    <td>${riskHtml}</td>
+                    <td>${user.id}</td>
+                    <td><b>${user.username}</b></td>
+                    <td>${user.currentProvider || '未填寫'}</td>
+                    <td>$ ${user.currentBill || 0}</td>
+                    <td>${user.avgUsage === 999 ? '吃到飽' : user.avgUsage + ' GB'}</td>
+                    <td>
+                        <span class="risk-tag ${riskClass}">${riskLevel}</span>
+                    </td>
                 </tr>
             `;
-            tbody.insertAdjacentHTML('beforeend', tr);
+            tableBody.insertAdjacentHTML('beforeend', row);
         });
 
-    } catch (error) {
-        console.error("載入失敗:", error);
-        document.getElementById('userTableBody').innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">載入失敗或您的權限不足</td></tr>';
+    } catch (err) {
+        tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red; padding: 20px;">${err.message}</td></tr>`;
     }
 });

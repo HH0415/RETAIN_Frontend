@@ -9,40 +9,64 @@
 </head>
 <body>
     <nav class="top-nav">
-        <div class="nav-logo">RETAIN_ADMIN</div>
+        <a href="dashboard.html" class="nav-logo">RETAIN_ADMIN</a>
         <div class="nav-right-group">
-            <div class="nav-links">
-                <a href="dashboard.html" class="active">儀表板</a>
-                <a href="plans.html">方案資料維護</a>
-                <a href="users.html">使用者管理</a>
-                <a href="feedback_admin.html">留言板回覆</a>
-            </div>
+            <a href="dashboard.html" class="nav-link active">儀表板</a>
+            <a href="plans.html" class="nav-link">方案資料維護</a>
+            <a href="users.html" class="nav-link">使用者管理</a>
+            <a href="feedback_admin.html" class="nav-link">留言板回覆</a>
             <button onclick="logout()" class="logout-btn">登出</button>
         </div>
     </nav>
     
-    <div class="container">
-        <h1>儀表板</h1>
-        <p style="margin-bottom: 20px; font-weight: bold;">系統營運總覽與資料庫統計數據 (RetainDB 狀態監控)</p>
+    <div class="container dashboard-content">
+        <h1 class="welcome-text">儀表板</h1>
         
-        <div class="dashboard-grid">
-            <div class="stat-card">
-                <h3>平台註冊會員總數</h3>
-                <div class="stat-number">1,248</div>
-                <p>Users 表紀錄筆數</p>
+        <div class="grid-layout admin-stat-grid">
+            <div class="card-panel text-center">
+                <h3 class="stat-title">平台註冊會員總數</h3>
+                <div class="stat-number" id="total-users">載入中...</div>
+                <p class="stat-desc">Users 表紀錄筆數</p>
             </div>
-            <div class="stat-card">
-                <h3>上架資費方案數</h3>
-                <div class="stat-number">45</div>
-                <p>Plans 表紀錄筆數</p>
+            
+            <div class="card-panel text-center">
+                <h3 class="stat-title">上架資費方案數</h3>
+                <div class="stat-number" id="total-plans">載入中...</div>
+                <p class="stat-desc">Plans 表紀錄筆數</p>
             </div>
-            <div class="stat-card" style="background: #f0f0f0;">
-                <h3>待處理客服工單</h3>
-                <div class="stat-number">12</div>
-                <p>Tickets 表未回覆筆數</p>
+            
+            <div class="card-panel text-center highlight-bg">
+                <h3 class="stat-title">待處理客服工單</h3>
+                <div class="stat-number" id="total-tickets">載入中...</div>
+                <p class="stat-desc">Tickets 表未回覆筆數</p>
+            </div>
+        </div>
+
+        <div class="card-panel full-width" style="margin-top: 30px;">
+            <h3 class="risk-title">高流失風險名單 (溢繳嚴重用戶)</h3>
+            <p class="table-subtitle">系統自動列出目前資費極度不划算，極可能跳槽至其他電信的用戶。</p>
+            
+            <div class="table-responsive">
+                <table class="data-table main-list-table">
+                    <thead>
+                        <tr>
+                            <th>使用者帳號</th>
+                            <th>目前電信</th>
+                            <th>目前月租</th>
+                            <th>每月用量</th>
+                            <th>建議轉換方案</th>
+                            <th class="text-right">預計可省下</th>
+                        </tr>
+                    </thead>
+                    <tbody id="risk-list-body">
+                        <tr><td colspan="6" class="text-center">數據分析中...</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    
     <script src="../shared/guard.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>

@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 建立帳號</title>
-    <link rel="stylesheet" href="../shared/global.css">
+    <title>RETAIN | 註冊帳號</title>
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <a href="login.html" class="nav-logo">RETAIN_SYSTEM</a>
-        <div class="nav-right-group">
-            <div class="nav-links">
-                <a href="login.html">登入系統</a>
+
+    <h1 class="page-title">註冊帳號</h1>
+
+    <div class="register-box">
+        <form id="registerForm">
+            <div class="form-group">
+                <label>使用者帳號</label>
+                <input type="text" id="username" class="input-field" placeholder="請設定您的帳號" required>
             </div>
-        </div>
-    </nav>
 
-    <div class="container register-container">
-        <h1 class="page-title">快速註冊</h1>
-        
-        <div class="card-panel">
-                     
-            <form id="registerForm">
-                <div class="form-group">
-                    <label>使用者帳號 (Login ID)</label>
-                    <input type="text" id="reg-username" class="input-field" placeholder="輸入您想要的帳號" required autocomplete="username">
-                </div>
+            <div class="form-group">
+                <label>註冊信箱 (Email)</label>
+                <input type="email" id="email" class="input-field" placeholder="example@mail.com" required>
+            </div>
 
-                <div class="form-group">
-                    <label>設定密碼 (Password)</label>
-                    <input type="password" id="reg-password" class="input-field" placeholder="至少 4 位數" required minlength="4" autocomplete="new-password">
-                </div>
+            <div class="form-group">
+                <label>設定密碼</label>
+                <input type="password" id="password" class="input-field" placeholder="••••••••" required>
+            </div>
 
-                <button type="submit" id="regBtn" class="btn-primary">
-                    建立帳號並登入
-                </button>
-            </form>
+            <div class="form-group">
+                <label>再次確認密碼</label>
+                <input type="password" id="confirmPassword" class="input-field" placeholder="••••••••" required>
+            </div>
 
-            <div id="regStatus" class="status-msg"></div>
+            <div id="statusMsg" class="status-msg"></div>
+
+            <button type="submit" id="registerBtn" class="btn-black">建立帳號</button>
+        </form>
+
+        <div class="footer-links">
+            <a href="login.html" class="back-link">已有帳號？ <span>返回登入</span></a>
         </div>
     </div>
 

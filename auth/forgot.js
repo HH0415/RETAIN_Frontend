@@ -1,31 +1,37 @@
-document.getElementById('forgotForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('emailInput').value;
-    const btn = document.getElementById('sendBtn');
+document.addEventListener("DOMContentLoaded", () => {
+    const forgotForm = document.getElementById('forgotForm');
     const msg = document.getElementById('statusMsg');
+    const submitBtn = document.getElementById('submitBtn');
 
-    btn.disabled = true;
-    btn.textContent = "處理中...";
-    msg.textContent = "";
+    forgotForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    try {
-        const res = await fetch('http://localhost:5164/api/Auth/forgot-password', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ Email: email })
-        });
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
 
-        if (res.ok) {
-            msg.style.color = "#2e7d32";
-            msg.textContent = "重設連結已發送！請檢查您的終端機 Console。";
-        } else {
-            msg.style.color = "#d32f2f";
-            msg.textContent = await res.text();
+        submitBtn.disabled = true;
+        submitBtn.textContent = "處理中...";
+        msg.innerHTML = "";
+
+        try {
+            const response = await fetch('http://localhost:5164/api/Auth/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Username: username, Email: email })
+            });
+
+            if (response.ok) {
+                msg.innerHTML = "<span style='color: #2e7d32;'>重設信件已發送，請至信箱查收。</span>";
+                forgotForm.reset();
+            } else {
+                const errText = await response.text();
+                msg.innerHTML = `<span style='color: #d32f2f;'>錯誤：${errText || "查無此帳號或信箱"}</span>`;
+            }
+        } catch (error) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線失敗</span>";
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "發送重設密碼信";
         }
-    } catch (err) {
-        msg.textContent = "系統連線失敗，請檢查後端是否啟動。";
-    } finally {
-        btn.disabled = false;
-        btn.textContent = "發送重設郵件";
-    }
+    });
 });

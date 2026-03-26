@@ -1,64 +1,51 @@
-.admin-container {
-    max-width: 1000px;
+.admin-main-content {
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 20px;
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 30px;
+.card-panel-black {
+    border: 3px solid #000;
+    padding: 0; 
+    background-color: #fff;
 }
 
-.card {
-    background: #fff;
+.btn-black-outline {
+    background: transparent;
     border: 2px solid #000;
-    padding: 20px;
-    box-shadow: 4px 4px 0 #000;
-}
-
-.nav-link {
-    margin-right: 20px;
-    color: #555;
-    text-decoration: none;
+    padding: 8px 15px;
+    cursor: pointer;
     font-weight: bold;
 }
-.nav-link.active {
-    color: #000;
-    border-bottom: 2px solid #000;
-    padding-bottom: 3px;
-}
-.nav-link:hover { color: #000; }
-.logout-btn { padding: 5px 15px; margin-left: 10px; font-size: 0.9em; }
 
-.back-btn-container { margin-bottom: 20px; }
-.back-btn {
-    display: inline-block;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border: 1px solid #000;
-    padding: 5px 10px;
-    transition: all 0.2s;
-}
-.back-btn:hover {
+.btn-black-outline:hover {
     background: #000;
     color: #fff;
 }
 
-.data-table {
+.data-table-black {
     width: 100%;
     border-collapse: collapse;
 }
-.data-table th, .data-table td {
-    border: 1px solid #000;
-    padding: 12px;
+
+.data-table-black th {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
     text-align: left;
 }
-.data-table th {
-    background: #000;
-    color: #fff;
+
+.data-table-black td {
+    border-bottom: 2px solid #000;
+    padding: 15px;
 }
 
-.loading-text { text-align: center; color: #666; font-style: italic; }
-.risk-high { color: red; font-weight: bold; }
-.risk-low { color: green; font-weight: bold; }
+.risk-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #000;
+}
+
+.risk-high { background-color: #ff4d4d; color: white; }
+.risk-medium { background-color: #ffd700; color: black; }
+.risk-low { background-color: #2ecc71; color: white; }

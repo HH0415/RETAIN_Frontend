@@ -127,3 +127,29 @@ body {
     margin-bottom: 10px;
     font-size: 0.9rem;
 }
+
+@media (max-width: 850px) {
+    .top-nav {
+        flex-direction: column; 
+        height: auto;
+        padding: 15px;
+    }
+
+    .nav-right-group {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .logout-btn {
+        margin-left: 0;
+        width: 100%; 
+    }
+}

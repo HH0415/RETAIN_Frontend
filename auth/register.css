@@ -1,22 +1,29 @@
-.register-container {
-    max-width: 450px;
-    margin: 60px auto;
+body {
+    font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    padding: 20px;
 }
 
 .page-title {
-    text-align: center;
+    font-size: 2.5rem;
     margin-bottom: 30px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: normal;
 }
 
-.instruction-text {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 25px;
-    line-height: 1.5;
+.register-box {
+    border: 3px solid #000;
+    padding: 40px;
+    width: 450px;
+    max-width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -27,26 +34,63 @@
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.btn-black {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.btn-black:hover {
+    background-color: #333;
 }
 
 .status-msg {
-    margin-top: 20px;
     text-align: center;
+    margin-bottom: 15px;
+    min-height: 20px;
     font-weight: bold;
-    min-height: 24px;
-    font-size: 0.9rem;
 }
 
-.status-error {
-    color: #d32f2f;
+.footer-links {
+    margin-top: 25px;
+    text-align: center;
 }
 
-.status-success {
-    color: #2e7d32;
+.back-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.95rem;
 }
 
-.input-field:focus {
-    background-color: #f9f9f9;
-    border-color: #000;
+.back-link span {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .register-box {
+        padding: 30px 20px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
 }
