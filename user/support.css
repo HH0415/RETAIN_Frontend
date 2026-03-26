@@ -1,0 +1,56 @@
+.support-container { 
+    max-width: 800px; 
+    margin-top: 40px; 
+}
+
+.page-title { 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+
+.card-panel h3 { 
+    margin-bottom: 15px; 
+    border-bottom: 2px solid #000; 
+    padding-bottom: 10px; 
+}
+
+.support-form { 
+    margin-top: 15px; 
+}
+
+.message-box {
+    height: 120px;
+    resize: none; 
+}
+
+.ticket-list { margin-top: 15px; }
+.empty-state { text-align: center; color: #666; font-style: italic; }
+
+.ticket-item { 
+    border: 2px solid #000; 
+    margin-bottom: 15px; 
+}
+
+.ticket-header { 
+    background: #f4f4f4; 
+    padding: 10px; 
+    border-bottom: 1px solid #000; 
+    font-weight: bold; 
+    font-size: 0.9rem; 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.ticket-body { 
+    padding: 15px; 
+}
+
+.admin-reply-box { 
+    margin-top: 15px; 
+    padding-top: 15px; 
+    border-top: 1px dashed #000; 
+}
+
+.admin-label { 
+    font-weight: bold; 
+}

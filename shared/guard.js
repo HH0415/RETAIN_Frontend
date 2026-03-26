@@ -1,14 +1,16 @@
-(function() {
-    const token = sessionStorage.getItem("RETAIN_TOKEN");
-    const isAuth = window.location.href.includes("/auth/");
-    if (!token && !isAuth) {
-        window.location.href = "../auth/login.html";
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem('retain_jwt');
+
+    if (!token) {
+        alert("系統偵測到您尚未登入或憑證已過期，請重新登入！");
+        window.location.href = '../auth/login.html';
     }
-})();
+});
 
 function logout() {
-    if (confirm("確定要斷開系統連線嗎？")) {
-        sessionStorage.clear();
-        window.location.href = "../auth/login.html";
-    }
+    localStorage.removeItem('retain_jwt');
+    localStorage.removeItem('retain_role');
+    
+    alert("已成功登出系統，期待您再次使用 RETAIN！");
+    window.location.href = '../auth/login.html';
 }

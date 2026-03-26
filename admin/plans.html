@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN ADMIN | 方案資料維護</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="plans.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">RETAIN_ADMIN</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html">儀表板</a>
+                <a href="plans.html" class="active">方案資料維護</a>
+                <a href="users.html">使用者管理</a>
+                <a href="feedback_admin.html">留言板回覆</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>方案資料維護</h1>
+        
+        <div class="card-panel">
+            <h2>新增電信資費方案 (寫入 Plans 表)</h2>
+            <form style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <input type="text" class="input-field" placeholder="電信業者 (例: 中華電信)" required>
+                <input type="text" class="input-field" placeholder="方案名稱 (例: 5G 輕量版)" required>
+                <input type="number" class="input-field" placeholder="月租費 (NTD)" required>
+                <input type="number" class="input-field" placeholder="流量上限 (GB)" required>
+                <button type="button" class="btn-primary" style="margin-top: 0;" onclick="alert('方案已新增至資料庫！')">新增方案</button>
+            </form>
+        </div>
+
+        <div class="card-panel" style="margin-top: 20px;">
+            <h2>現有方案列表</h2>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>電信業者</th>
+                            <th>方案名稱</th>
+                            <th>月租費</th>
+                            <th>流量上限</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P-001</td>
+                            <td>中華電信</td>
+                            <td>4G 輕量吃到飽</td>
+                            <td>$499</td>
+                            <td>21Mbps 吃到飽</td>
+                            <td><button class="action-btn">編輯/刪除</button></td>
+                        </tr>
+                        <tr>
+                            <td>P-002</td>
+                            <td>台灣大哥大</td>
+                            <td>5G 飆網方案</td>
+                            <td>$1,399</td>
+                            <td>無限流量</td>
+                            <td><button class="action-btn">編輯/刪除</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../shared/guard.js"></script>
+</body>
+</html>

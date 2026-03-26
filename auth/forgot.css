@@ -1,21 +1,20 @@
-.auth-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+.forgot-container {
+    max-width: 500px; 
+    margin-top: 80px; 
 }
-.auth-card {
-    width: 100%;
-    max-width: 420px;
+.page-title { 
+    text-align: center; 
+    margin-bottom: 30px; 
 }
-.auth-footer {
-    text-align: center;
-    margin-top: 25px;
+.instruction-text { 
+    margin-bottom: 25px; 
+    font-size: 0.9rem; 
+    color: #555; 
+    line-height: 1.5; 
 }
-.auth-footer a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
+.status-message { 
+    margin-top: 20px; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 0.9rem; 
 }

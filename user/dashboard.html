@@ -3,63 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 資費健檢</title>
+    <title>RETAIN | 方案推薦</title>
     <link rel="stylesheet" href="../shared/global.css">
     <link rel="stylesheet" href="dashboard.css">
+    <script src="../shared/guard.js"></script>
 </head>
 <body>
     <nav class="top-nav">
-    <div class="nav-logo">RETAIN_USER</div>
-    <div class="nav-right-group">
-        <div class="nav-links">
-            <a href="dashboard.html">資費健檢</a>
-            <a href="environment.html">環境感知</a>
-            <a href="../profile/profile.html">個人設定</a>
-            <a href="../feedback/feedback.html">客服頻道</a>
+        <a href="dashboard.html" class="nav-logo">RETAIN_SYSTEM</a>
+        <div class="nav-right-group">
+            <a href="dashboard.html" class="nav-link active">方案推薦</a>
+            <a href="support.html" class="nav-link">客服中心</a>
+            <a href="environment.html" class="nav-link">環境資訊</a>
+            <a href="../profile/profile.html" class="nav-link">個人設定</a>
+            
+            <span id="nav-username" class="nav-greeting">載入中...</span>
+            <button onclick="logout()" class="logout-btn" id="logoutBtn">登出</button>
         </div>
-        <button onclick="logout()" class="logout-btn">登出</button>
+    </nav>
+    
+    <div class="container dashboard-content">
+    <h1 class="welcome-text">分析報告已生成，<span id="welcome-name"></span> 您好：</h1>
+    
+    <div class="grid-layout">
+        <div class="card-panel">
+            <h3>目前的合約狀況</h3>
+            <table class="data-table">
+                <tr><td>電信業者：</td><td class="text-right fw-bold" id="curr-provider">-</td></tr>
+                <tr><td>每月用量：</td><td class="text-right fw-bold" id="curr-usage">-</td></tr>
+                <tr><td>每月帳單：</td><td class="text-right fw-bold text-red" id="curr-bill">-</td></tr>
+            </table>
+        </div>
+
+        <div class="card-panel best-recommend">
+            <span class="top-tag">TOP 1 首選</span>
+            <h3>RETAIN 最佳推薦</h3>
+            <table class="data-table">
+                <tr><td>推薦業者：</td><td class="text-right fw-bold" id="rec-provider">-</td></tr>
+                <tr><td>方案名稱：</td><td class="text-right fw-bold" id="rec-plan">-</td></tr>
+                <tr><td>新月租費：</td><td class="text-right fw-bold text-green" id="rec-bill">-</td></tr>
+            </table>
+        </div>
+
+        <div class="card-panel full-width">
+            <h3>2026 市場全電信資費總覽</h3>
+            <p class="table-subtitle">系統已依據您的用量 (<span id="usage-display">0</span> GB) 標註推薦方案：</p>
+            
+            <div class="table-responsive">
+                <table class="data-table main-list-table">
+                    <thead>
+                        <tr>
+                            <th>建議</th>
+                            <th>電信業者</th>
+                            <th>方案名稱</th>
+                            <th>流量上限</th>
+                            <th class="text-right">月租費</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alt-plans-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</nav>
-    <div class="container">
-        <h1>資費健檢</h1>
-        <div class="dashboard-grid">
-            <div class="card-panel highlight-card">
-                <h2>降級建議</h2>
-                <p>平均月流量：10.5GB(加提示)</p>
-                <div class="savings-box">
-                    <span>每月省下</span>
-                    <h2 class="price-tag">$500</h2>
-                </div>
-                <button class="btn-primary">執行優化方案</button>
-            </div>
-        </div>
-            <div class="card-panel highlight-card">
-                <h2>方案推薦</h2>
-                <p>平均月流量：10GB</p>
-                <div class="savings-box">
-                    <span>每月省下</span>
-                    <h2 class="price-tag">$5</h2>
-                </div>
-                <button class="btn-primary">執行優化方案</button>
-            </div>
-            <div class="card-panel highlight-card">
-                <h2>方案推薦</h2>
-                <p>平均月流量：15GB(加提示)</p>
-                <div class="savings-box">
-                    <span>每月省下</span>
-                    <h2 class="price-tag">$15</h2>
-                </div>
-                <button class="btn-primary">執行優化方案</button>
-            </div>
-            <div class="card-panel highlight-card">
-                <h2>方案推薦</h2>
-                <p>平均月流量：10.5GB</p>
-                <div class="savings-box">
-                    <span>每月省下</span>
-                    <h2 class="price-tag">$40</h2>
-                </div>
-                <button class="btn-primary">執行優化方案</button>
-            </div>
-    <script src="../shared/guard.js"></script>
+
+    <div class="card-panel highlight-box" id="saving-box">
+        分析中...
+    </div>
+</div>
+    <script src="dashboard.js"></script>
 </body>
 </html>

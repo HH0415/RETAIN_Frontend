@@ -5,39 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RETAIN | 個人設定</title>
     <link rel="stylesheet" href="../shared/global.css">
-    <link rel="stylesheet" href="profile.css">
+    <script src="../shared/guard.js"></script>
 </head>
 <body>
     <nav class="top-nav">
-        <div class="nav-logo">RETAIN_PROFILE</div>
+        <a href="../user/dashboard.html" class="nav-logo">RETAIN_SYSTEM</a>
         <div class="nav-right-group">
-            <div class="nav-links">
-                <a id="backBtn" href="#">[ 返回首頁 ]</a>
-            </div>
-            <button onclick="logout()" class="logout-btn">登出</button>
+            <a href="../user/dashboard.html" class="nav-link">方案推薦</a>
+            <a href="../user/support.html" class="nav-link">客服中心</a>
+            <a href="../user/environment.html" class="nav-link">環境資訊</a>
+            <a href="profile.html" class="nav-link active">個人設定</a>
+            <button onclick="logout()" class="logout-btn" id="logoutBtn">登出</button>
         </div>
     </nav>
-    <div class="container">
-        <h1>個人設定</h1>
-        <div class="profile-grid">
+    
+    <div class="container" style="max-width: 700px; margin-top: 40px;">
+        <h1 style="text-align: center; margin-bottom: 30px;">個人設定與合約管理</h1>
+        
+        <form id="profileForm">
             <div class="card-panel">
-                <h3>基本資訊</h3>
-                <div class="info-item"><label>真實姓名：</label><p>王大明</p></div>
-                <div class="info-item"><label>電子郵件：</label><p>yhong@telecom.com</p></div>
-                <div class="info-item"><label>帳號註冊時間：</label><p>2026-03-16 14:30</p></div>
+                <h3 style="border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px;">基本聯絡資訊</h3>
+                
+                <div class="form-group">
+                    <label>系統帳號 (無法修改)</label>
+                    <input type="text" id="profile-username" class="input-field" disabled style="background-color: #f5f5f5; color: #888; cursor: not-allowed;">
+                </div>
+
+                <div class="form-group">
+                    <label>真實姓名</label>
+                    <input type="text" id="profile-name" class="input-field" placeholder="請輸入您的真實姓名">
+                </div>
+
+                <div style="display: flex; gap: 20px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>聯絡電話</label>
+                        <input type="tel" id="profile-phone" class="input-field" placeholder="09xx-xxx-xxx">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>電子信箱 Email</label>
+                        <input type="email" id="profile-email" class="input-field" placeholder="example@gmail.com">
+                    </div>
+                </div>
             </div>
+
             <div class="card-panel">
-                <h3>修改密碼</h3>
-                <form id="pwForm">
-                    <div class="form-group"><label>舊密碼</label><input type="password" class="input-field" required></div>
-                    <div class="form-group"><label>新密碼</label><input type="password" id="n1" class="input-field" required></div>
-                    <div class="form-group"><label>確認新密碼</label><input type="password" id="n2" class="input-field" required></div>
-                    <button type="submit" class="btn-primary">確認更新</button>
-                </form>
+                <h3 style="border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px;">目前的合約方案</h3>
+                
+                <div class="form-group">
+                    <label>目前使用的電信業者</label>
+                    <select id="profile-provider" class="input-field" required>
+                        <option value="中華電信">中華電信</option>
+                        <option value="台灣大哥大">台灣大哥大</option>
+                        <option value="遠傳電信">遠傳電信</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 20px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>目前月租費 (新台幣/月)</label>
+                        <input type="number" id="profile-bill" class="input-field" required min="0">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>每月平均用量 (GB，吃到飽填 999)</label>
+                        <input type="number" id="profile-usage" class="input-field" required min="0">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary">儲存所有設定</button>
             </div>
-        </div>
+        </form>
     </div>
-    <script src="../shared/guard.js"></script>
+
     <script src="profile.js"></script>
 </body>
 </html>

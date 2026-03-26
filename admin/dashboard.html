@@ -3,39 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 流失預警</title>
+    <title>RETAIN ADMIN | 儀表板</title>
     <link rel="stylesheet" href="../shared/global.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <nav class="top-nav">
-    <div class="nav-logo">RETAIN_ADMIN</div>
-    <div class="nav-right-group">
-        <div class="nav-links">
-            <a href="dashboard.html">流失監控</a>
-            <a href="analytics.html">ROI 看板</a>
-            <a href="../profile/profile_admin.html">個人設定</a>
-            <a href="../admin/feedback_admin.html">客服頻道</a>
+        <div class="nav-logo">RETAIN_ADMIN</div>
+        <div class="nav-right-group">
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">儀表板</a>
+                <a href="plans.html">方案資料維護</a>
+                <a href="users.html">使用者管理</a>
+                <a href="feedback_admin.html">留言板回覆</a>
+            </div>
+            <button onclick="logout()" class="logout-btn">登出</button>
         </div>
-        <button onclick="logout()" class="logout-btn">登出</button>
-    </div>
-</nav>
+    </nav>
+    
     <div class="container">
-        <h1>流失監控</h1>
-        <div class="card-panel">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>用戶 ID</th>
-                        <th>風險分數</th>
-                        <th>主因分析</th>
-                    </tr>
-                </thead>
-                <tbody id="churnList"></tbody>
-            </table>
+        <h1>儀表板</h1>
+        <p style="margin-bottom: 20px; font-weight: bold;">系統營運總覽與資料庫統計數據 (RetainDB 狀態監控)</p>
+        
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>平台註冊會員總數</h3>
+                <div class="stat-number">1,248</div>
+                <p>Users 表紀錄筆數</p>
+            </div>
+            <div class="stat-card">
+                <h3>上架資費方案數</h3>
+                <div class="stat-number">45</div>
+                <p>Plans 表紀錄筆數</p>
+            </div>
+            <div class="stat-card" style="background: #f0f0f0;">
+                <h3>待處理客服工單</h3>
+                <div class="stat-number">12</div>
+                <p>Tickets 表未回覆筆數</p>
+            </div>
         </div>
     </div>
     <script src="../shared/guard.js"></script>
-    <script src="dashboard.js"></script>
 </body>
 </html>

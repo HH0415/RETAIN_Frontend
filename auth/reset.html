@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETAIN | 設定新密碼</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="login.html" class="nav-logo">RETAIN_SYSTEM</a>
+    </nav>
+
+    <div class="container reset-container">
+        <h1 class="page-title">設定新密碼</h1>
+        <div class="card-panel">
+            <p class="instruction-text">請為您的帳號設定一個新的安全密碼。</p>
+            
+            <form id="resetForm">
+                <div class="form-group">
+                    <label>輸入新密碼</label>
+                    <input type="password" id="newPassword" class="input-field" placeholder="至少 4 位數" required minlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label>再次確認新密碼</label>
+                    <input type="password" id="confirmPassword" class="input-field" placeholder="請再次輸入新密碼" required>
+                </div>
+
+                <button type="submit" id="resetBtn" class="btn-primary">確認修改並登入</button>
+            </form>
+
+            <div id="resetStatus" class="status-msg"></div>
+        </div>
+    </div>
+
+    <script src="reset.js"></script>
+</body>
+</html>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Segoe+UI&display=swap');
+
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -15,6 +17,7 @@ body {
 
 .top-nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background: #ffffff;
     border-bottom: 2px solid #000000;
@@ -29,29 +32,33 @@ body {
     font-weight: 900;
     color: #000000;
     font-size: 1.2rem;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .nav-right-group {
     display: flex;
     align-items: center;
-    margin-left: auto;
     gap: 20px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
+.nav-link {
     color: #000000;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    text-decoration: underline;
+.nav-link:hover, .nav-link.active {
+    text-decoration: underline; 
+}
+
+.nav-greeting {
+    color: #000000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .logout-btn {
@@ -61,6 +68,8 @@ body {
     padding: 6px 15px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .logout-btn:hover {
@@ -103,6 +112,7 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     margin-top: 15px;
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -116,23 +126,4 @@ body {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 0.9rem;
-}
-
-@media (max-width: 1024px) {
-    .top-nav {
-        height: auto;
-        padding: 15px 5%;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .nav-right-group {
-        margin-left: 0;
-        flex-direction: column;
-        width: 100%;
-        gap: 15px;
-    }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 }

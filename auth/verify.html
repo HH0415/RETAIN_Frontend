@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>RETAIN | 帳號驗證</title>
+    <link rel="stylesheet" href="../shared/global.css">
+    <style>
+        .verify-container { max-width: 500px; margin: 100px auto; text-align: center; }
+        .status-icon { font-size: 3rem; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container verify-container">
+        <div class="card-panel">
+            <div id="statusIcon" class="status-icon">⏳</div>
+            <h1 id="statusTitle">正在驗證您的帳號...</h1>
+            <p id="statusDesc">請稍候，我們正在與伺服器通訊。</p>
+            
+            <div id="actionArea" style="margin-top: 30px; display: none;">
+                <a href="login.html" class="btn-primary" style="text-decoration: none; display: inline-block; width: 200px;">前往登入</a>
+            </div>
+        </div>
+    </div>
+    <script src="verify.js"></script>
+</body>
+</html>
