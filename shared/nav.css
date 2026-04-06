@@ -1,95 +1,61 @@
-.main-nav {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 0;
-    position: fixed; 
-    top: 0;
+.top-nav {
     width: 100%;
+    border-bottom: 3px solid #000;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-body {
-    padding-top: 70px; 
-}
-
-.nav-content {
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 20px;
 }
 
 .nav-logo {
+    font-weight: 900;
     font-size: 1.6rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
-.admin-logo {
-    color: #ffd700; 
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
+    gap: 20px;
 }
 
-.nav-links li a {
-    color: #d1d9e6; 
+.nav-links a {
     text-decoration: none;
+    color: #000;
+    font-weight: bold;
     font-size: 0.95rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
-    color: white;
-}
-
-.nav-links li a.active {
-    color: white;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 5px;
+.nav-links a.active {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 3px;
 }
 
 .logout-btn {
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    border: 3px solid #000;
+    background: transparent;
+    padding: 6px 20px;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .logout-btn:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-.logout-admin:hover {
-    background-color: #d32f2f; 
-    border-color: #d32f2f;
-}
-
-.public-nav {
-    background-color: transparent;
-    box-shadow: none;
-    border-bottom: 1px solid #ccc;
-    position: relative;
-}
-
-.public-nav .nav-logo,
-.public-nav .nav-links li a {
-    color: var(--primary-color);
-}
-
-.public-nav body {
-    padding-top: 0;
+    background-color: #000;
+    color: #fff;
 }

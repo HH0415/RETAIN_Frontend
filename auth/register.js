@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
 
+        if (username.length < 3) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>帳號長度必須大於 3 個字元</span>";
+            return;
+        }
+
+        if (password.length < 6) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>密碼長度至少需要 6 位數</span>";
+            return;
+        }
+
         if (password !== confirmPassword) {
             msg.innerHTML = "<span style='color: #d32f2f;'>兩次輸入的密碼不一致！</span>";
             return;
@@ -28,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     Username: username, 
                     Email: email, 
                     Password: password,
-                    Role: "User" 
+                    Role: "User"
                 })
             });
 
@@ -40,11 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 3000);
             } else {
                 const errText = await response.text();
-                msg.innerHTML = `<span style='color: #d32f2f;'>註冊失敗：${errText || "帳號可能已存在"}</span>`;
+                msg.innerHTML = `<span style='color: #d32f2f;'>註冊失敗：${errText || "帳號或信箱可能已存在"}</span>`;
                 registerBtn.disabled = false;
                 registerBtn.textContent = "建立帳號";
             }
         } catch (error) {
+            console.error("註冊錯誤:", error);
             msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線失敗</span>";
             registerBtn.disabled = false;
             registerBtn.textContent = "建立帳號";

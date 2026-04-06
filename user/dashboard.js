@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = 'questionnaire.html';
             return; 
         }
+
         const handlePlanChange = async (btn, newProvider, newPrice) => {
             if (!confirm(`確定要將目前的合約變更為「${newProvider}」 ($${newPrice}/月) 嗎？`)) {
                 return;
@@ -67,9 +68,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 btn.textContent = originalText;
             }
         };
-
-        document.getElementById('nav-username').textContent = userData.username; 
+   
+        document.getElementById('nav-username').textContent = userData.username;
         document.getElementById('welcome-name').textContent = userData.username; 
+
         document.getElementById('usage-display').textContent = userData.avgUsage === 999 ? '吃到飽' : userData.avgUsage;
         document.getElementById('curr-provider').textContent = userData.currentProvider;
         document.getElementById('curr-usage').textContent = userData.avgUsage === 999 ? '吃到飽' : `${userData.avgUsage} GB`;

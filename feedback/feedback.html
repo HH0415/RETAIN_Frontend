@@ -3,52 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN | 留言板&雙向通訊</title>
+    <title>RETAIN | 客服中心</title>
     <link rel="stylesheet" href="../shared/global.css">
-    <style>
-        .chat-box { border: 2px solid #000; height: 400px; overflow-y: auto; padding: 20px; margin-bottom: 20px; }
-        .msg { border: 1px solid #000; padding: 15px; margin-bottom: 15px; width: 80%; }
-        .msg-user { margin-left: auto; background: #fff; border-width: 2px; }
-        .msg-admin { margin-right: auto; background: #f0f0f0; }
-        .msg-time { font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; display: block; }
-    </style>
+    <link rel="stylesheet" href="../shared/nav.css">
+    <link rel="stylesheet" href="feedback.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-logo">RETAIN_USER</div>
-        <div class="nav-right-group">
-            <div class="nav-links">
-                <a href="questionnaire.html">問卷填寫</a>
-                <a href="recommendation.html">方案推薦</a>
-                <a href="environment.html">訊號回報與環境</a>
-                <a href="../profile/profile.html">個人設定</a>
-                <a href="../feedback/feedback.html" class="active">留言板&雙向通訊</a>
-            </div>
-            <button onclick="logout()" class="logout-btn">登出</button>
-        </div>
-    </nav>
+    <nav class="top-nav"></nav>
     
-    <div class="container">
-        <h1>留言板&雙向通訊</h1>
+    <div class="container feedback-main">
+        <h1 class="page-title">客服留言板</h1>
         
-        <div class="card-panel">
-            <div class="chat-box">
-                <div class="msg msg-admin">
-                    <span class="msg-time">系統管理員 - 2026/03/21 10:00</span>
-                    您好，系統偵測到您所在的區域有訊號波動，請問需要協助嗎？
-                </div>
-                <div class="msg msg-user">
-                    <span class="msg-time">我 (YHONG) - 2026/03/22 19:10</span>
-                    台中市大里區室內 5G 幾乎斷線，請確認基地台狀況。
-                </div>
-            </div>
-            
-            <form style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="text" class="input-field" style="margin-bottom: 0; flex-grow: 1;" placeholder="輸入回報內容..." required>
-                <button type="button" class="btn-primary" style="margin-top: 0; width: auto; padding: 0 30px;">送出</button>
+        <div id="tickets-area"></div>
+
+        <div class="card-panel-black">
+            <h3 class="panel-title">發起新諮詢</h3>
+            <form id="newTicketForm" class="chat-input-group">
+                <input type="text" id="newMsgInput" class="black-input" placeholder="輸入您想詢問或回報內容..." required>
+                <button type="submit" class="btn-black">建立回覆</button>
             </form>
         </div>
     </div>
+
     <script src="../shared/guard.js"></script>
+    <script src="../shared/nav.js"></script>
+    <script src="feedback.js"></script>
 </body>
 </html>

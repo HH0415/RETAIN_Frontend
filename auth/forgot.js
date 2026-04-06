@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     forgotForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById('username').value.trim();
         const email = document.getElementById('email').value.trim();
 
         submitBtn.disabled = true;
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch('http://localhost:5164/api/Auth/forgot-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ Username: username, Email: email })
+                body: JSON.stringify({ Email: email }) 
             });
 
             if (response.ok) {
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 forgotForm.reset();
             } else {
                 const errText = await response.text();
-                msg.innerHTML = `<span style='color: #d32f2f;'>錯誤：${errText || "查無此帳號或信箱"}</span>`;
+                msg.innerHTML = `<span style='color: #d32f2f;'>錯誤：${errText || "查無此信箱"}</span>`;
             }
         } catch (error) {
             msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線失敗</span>";

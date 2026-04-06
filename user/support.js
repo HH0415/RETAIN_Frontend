@@ -1,94 +1,111 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-        if (typeof logout === 'function') logout();
-    });
+    loadTickets();
+    document.getElementById('ticketForm').addEventListener('submit', createNewTicket);
+});
 
-    const token = localStorage.getItem('retain_jwt');
-    if (!token) return;
+const token = localStorage.getItem('retain_jwt');
 
-    const ticketForm = document.getElementById('ticketForm');
-    const ticketList = document.getElementById('ticketList');
+async function loadTickets() {
+    const list = document.getElementById('ticketList');
+    try {
+        const res = await fetch('http://localhost:5164/api/Tickets/my', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const tickets = await res.json();
 
-    async function loadTickets() {
-        try {
-            const res = await fetch('http://localhost:5164/api/Support/my-tickets', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            
-            if (!res.ok) throw new Error("無法取得留言紀錄");
-            const tickets = await res.json();
-
-            ticketList.innerHTML = ''; 
-
-            if (tickets.length === 0) {
-                ticketList.innerHTML = '<p style="text-align:center; color:#666;">目前沒有任何回報紀錄。</p>';
-                return;
-            }
-
-            tickets.forEach(t => {
-                const statusClass = t.status === 'Pending' ? 'status-pending' : 'status-closed';
-                const statusText = t.status === 'Pending' ? '待處理' : '已結案';
-                
-                const replyHtml = t.adminReply 
-                    ? `<div class="admin-reply-box">
-                           <div class="admin-reply-label">系統管理員回覆：</div>
-                           <div class="admin-reply-text">${t.adminReply}</div>
-                       </div>` 
-                    : `<div class="no-reply">客服人員正在處理您的問題，請耐心等候...</div>`;
-
-                const ticketHtml = `
-                    <div class="ticket-item">
-                        <div class="ticket-header">
-                            <span>發問時間：${t.createdAt}</span>
-                            <span class="status-badge ${statusClass}">${statusText}</span>
-                        </div>
-                        <div class="ticket-body">
-                            <div class="user-msg-label">您的回報內容：</div>
-                            <div class="user-msg-text">${t.userMessage}</div>
-                            ${replyHtml}
-                        </div>
-                    </div>
-                `;
-                ticketList.insertAdjacentHTML('beforeend', ticketHtml);
-            });
-        } catch (error) {
-            console.error(error);
-            ticketList.innerHTML = '<p style="text-align:center; color:red;">載入失敗，請稍後再試。</p>';
-        }
-    }
-
-    ticketForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const msgInput = document.getElementById('messageInput');
-        const message = msgInput.value.trim();
-
-        if (!message) {
-            alert("請輸入回報內容！");
+        if (tickets.length === 0) {
+            list.innerHTML = '<p class="empty-state">目前沒有任何回報紀錄。</p>';
             return;
         }
 
-        try {
-            const res = await fetch('http://localhost:5164/api/Support/ticket', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ message: message })
-            });
+        list.innerHTML = tickets.map(t => {
+            const messages = t.adminReply ? t.adminReply.split('|||').filter(x => x) : [];
+            const isClosed = t.status === "已結案";
 
-            if (res.ok) {
-                alert("回報成功！");
-                msgInput.value = ''; 
-                loadTickets(); 
-            } else {
-                alert("發送失敗，請稍後再試。");
-            }
-        } catch (error) {
-            console.error(error);
-            alert("伺服器連線異常。");
-        }
+            return `
+                <div class="ticket-item">
+                    <div class="ticket-header">
+                        <span>單號：#${t.id} (${t.createdAt})</span>
+                        <span>狀態：${t.status}</span>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="chat-box">
+                            <div class="bubble me">
+                                <b>您的初始回報：</b><br>${t.userMessage}
+                                <span class="bubble-time">${t.createdAt}</span>
+                            </div>
+                            ${messages.map(m => {
+                                const isAdmin = m.includes('[Admin|');
+                                const content = m.split(']')[1];
+                                const info = m.match(/\[(.*?)\]/)[1];
+                                return `
+                                    <div class="bubble ${isAdmin ? 'other' : 'me'}">
+                                        ${content}
+                                        <span class="bubble-time">${info}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        ${!isClosed ? `
+                            <div class="reply-section">
+                                <input type="text" id="reply-val-${t.id}" class="inline-input" placeholder="在這裡輸入後續回覆...">
+                                <div class="btn-group">
+                                    <button class="btn-send" onclick="sendReply(${t.id})">傳送回覆</button>
+                                    <button class="btn-close" onclick="resolveTicket(${t.id})">結案</button>
+                                </div>
+                            </div>
+                        ` : '<p style="text-align:center; color:#999; font-style:italic;">此工單已結案</p>'}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    } catch (err) {
+        list.innerHTML = '<p class="empty-state" style="color:red;">載入失敗，請檢查伺服器。</p>';
+    }
+}
+
+async function createNewTicket(e) {
+    e.preventDefault();
+    const content = document.getElementById('messageInput').value;
+    if (!content) return alert("請輸入內容！");
+
+    await fetch('http://localhost:5164/api/Tickets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ Content: content })
+    });
+    document.getElementById('messageInput').value = '';
+    loadTickets();
+}
+
+async function sendReply(id) {
+    const val = document.getElementById(`reply-val-${id}`).value;
+    if (!val) return;
+
+    const res = await fetch(`http://localhost:5164/api/Tickets/${id}/reply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ ReplyContent: val })
     });
 
+    if (res.ok) {
+        loadTickets(); 
+    }
+}
+
+
+async function resolveTicket(id) {
+    if (!confirm("確定要結案嗎？結束後將無法再回覆。")) return;
+    
+    await fetch(`http://localhost:5164/api/Tickets/${id}/resolve`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
     loadTickets();
-});
+}
+
+function logout() {
+    localStorage.removeItem('retain_jwt');
+    window.location.href = '../auth/login.html';
+}

@@ -22,6 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
 
+        if (username.length < 3) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>帳號長度必須大於 3 個字元</span>";
+            return; 
+        }
+
+        if (password.length < 6) {
+            msg.innerHTML = "<span style='color: #d32f2f;'>密碼長度至少需要 6 位數</span>";
+            return; 
+        }
+
         loginBtn.disabled = true;
         loginBtn.textContent = "登入中...";
         msg.innerHTML = "";

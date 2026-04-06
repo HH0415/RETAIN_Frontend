@@ -2,57 +2,56 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RETAIN | 方案推薦</title>
     <link rel="stylesheet" href="../shared/global.css">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../shared/nav.css">
+    <link rel="stylesheet" href="recommendation.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-logo">RETAIN_USER</div>
-        <div class="nav-right-group">
-            <div class="nav-links">
-                <a href="questionnaire.html">問卷填寫</a>
-                <a href="recommendation.html" class="active">方案推薦</a>
-                <a href="environment.html">訊號回報與環境</a>
-                <a href="../profile/profile.html">個人設定</a>
-                <a href="../feedback/feedback.html">留言板&雙向通訊</a>
-            </div>
-            <button onclick="logout()" class="logout-btn">登出</button>
-        </div>
-    </nav>
-    
+    <nav class="top-nav" id="main-nav"></nav>
     <div class="container">
-        <h1>方案推薦</h1>
+        <h1>方案推薦分析報告</h1>
         
-        <div class="dashboard-grid">
-            <div class="card-panel" style="background: #f9f9f9; border-style: dashed;">
-                <h2>您的現行合約狀態</h2>
-                <div style="margin-top: 15px;">
-                    <p><strong>電信業者：</strong> 中華電信</p>
-                    <p><strong>目前月租：</strong> $1,399</p>
-                    <p><strong>實際用量：</strong> 僅 15 GB</p>
-                </div>
-                <div style="margin-top: 20px; padding: 10px; border: 1px solid #000; font-weight: bold;">
-                    系統判定：用量極低，處於資費溢繳狀態。
-                </div>
+        <div class="grid-layout">
+            <div class="card-panel-dashed">
+                <h3>目前的合約狀況</h3>
+                <p>電信業者：<span id="curr-provider">-</span></p>
+                <p>目前月租：<span id="curr-bill">-</span></p>
+                <p>實際用量：<span id="curr-usage">-</span></p>
+                <div id="status-text" class="status-box-small">分析中...</div>
             </div>
 
-            <div class="card-panel">
-                <h2>最佳配置方案推薦</h2>
-                <div style="margin-top: 15px;">
-                    <p><strong>推薦合約：</strong> 4G 輕量 21Mbps 吃到飽</p>
-                    <p><strong>推薦月租：</strong> $499</p>
-                    <p><strong>涵蓋範圍：</strong> 完全覆蓋您的需求</p>
-                </div>
-                <div class="savings-box" style="margin-top: 20px; border-top: 2px solid #000; padding-top: 15px;">
-                    <span>每月預計為您省下</span>
-                    <h2 class="price-tag" style="font-size: 3rem; font-weight: 900; margin: 5px 0;">$900</h2>
-                </div>
-                <button class="btn-primary">確認轉換此方案</button>
+            <div class="card-panel-solid">
+                <span class="top-tag">TOP 1 首選</span>
+                <h3>RETAIN 最佳推薦</h3>
+                <p>推薦業者：<span id="rec-provider">-</span></p>
+                <p>方案名稱：<span id="rec-plan">-</span></p>
+                <p>新月租費：<span id="rec-bill">-</span></p>
+                <button class="btn-black-small" id="rec-change-plan-btn">切換至此最佳方案</button>
             </div>
         </div>
+
+        <div class="card-panel-solid">
+            <h3>2026 市場全電信資費總覽</h3>
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th>推薦度</th>
+                        <th>電信業者</th>
+                        <th>方案名稱</th>
+                        <th>網路流量</th>
+                        <th>每月帳單</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="alt-plans-body">
+                    </tbody>
+            </table>
+        </div>
+        <div class="savings-banner" id="saving-box">分析中...</div>
     </div>
     <script src="../shared/guard.js"></script>
+    <script src="../shared/nav.js"></script>
+    <script src="recommendation.js"></script>
 </body>
 </html>

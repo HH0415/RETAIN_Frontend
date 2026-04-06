@@ -99,3 +99,40 @@
         min-width: 700px;
     }
 }
+
+.btn-edit {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px; 
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right: 5px; 
+    transition: background 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #2980b9;
+}
+
+.btn-delete {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #cc0000;
+}
+
+.data-table-black td:last-child {
+    white-space: nowrap;
+}

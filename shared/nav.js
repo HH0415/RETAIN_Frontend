@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (role === 'admin') {
         navFile = '/shared/nav_admin.html'; 
     } else if (role === 'user') {
-        navFile = '/shared/nav_admin.html';
+        navFile = '/shared/nav_user.html'; 
     } else {
         navFile = '/shared/nav_public.html';
     }
@@ -16,9 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.insertAdjacentHTML('afterbegin', data); 
 
             const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('.nav-links li a');
+            const navLinks = document.querySelectorAll('.nav-links a'); 
             navLinks.forEach(link => {
-                if (link.getAttribute('href') && currentPath.includes(link.getAttribute('href').replace('..', ''))) {
+                const href = link.getAttribute('href');
+                if (href && currentPath.includes(href.replace('..', ''))) {
                     link.classList.add('active');
                 }
             });
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const logoutBtn = document.getElementById('logoutButton');
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', function() {
-                    localStorage.removeItem('token'); 
+                    localStorage.removeItem('retain_jwt'); 
                     localStorage.removeItem('role');  
                     alert('已順利登出系統！期待您再次使用 RETAIN。');
                     window.location.href = '../auth/login.html'; 

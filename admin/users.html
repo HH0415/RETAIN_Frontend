@@ -14,7 +14,7 @@
             <a href="dashboard.html" class="nav-link">儀表板</a>
             <a href="plans.html" class="nav-link">方案資料維護</a>
             <a href="users.html" class="nav-link active">使用者管理</a>
-            <a href="feedback_admin.html" class="nav-link">留言板回覆</a>
+            <a href="feedback_admin.html" class="nav-link">客服回覆中心</a>
             <button onclick="logout()" class="logout-btn">登出</button>
         </div>
     </nav>
@@ -31,7 +31,6 @@
                 <table class="data-table-black">
                     <thead>
                         <tr>
-                            <th width="60">ID</th>
                             <th>使用者帳號</th>
                             <th>目前電信</th>
                             <th>目前月租</th>
@@ -40,9 +39,11 @@
                         </tr>
                     </thead>
                     <tbody id="user-list-body">
-                        <tr><td colspan="6" style="text-align: center;">正在載入使用者數據...</td></tr>
+                        <tr><td colspan="5" style="text-align: center;">正在載入使用者數據...</td></tr>
                     </tbody>
                 </table>
+                
+                <div id="pagination" class="pagination-container"></div>
             </div>
         </div>
     </div>

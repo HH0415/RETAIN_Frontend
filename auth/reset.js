@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = urlParams.get('token');
 
     if (!token) {
-        msg.innerHTML = '<span class="error-text">❌ 無效或遺失重設憑證，請重新申請。</span>';
+        msg.innerHTML = '<span class="error-text">無效或遺失重設憑證，請重新申請。</span>';
         btn.disabled = true;
         btn.style.opacity = "0.5";
         return;
