@@ -16,7 +16,6 @@
             <a href="support.html" class="nav-link active">客服中心</a>
             <a href="environment.html" class="nav-link">環境資訊</a>
             <a href="../profile/profile.html" class="nav-link">個人設定</a>
-            
             <button onclick="logout()" class="logout-btn" id="logoutBtn">登出</button>
         </div>
     </nav>
@@ -24,19 +23,20 @@
     <div class="container support-container">
         <h1 class="page-title">客服與訊號回報中心</h1>
         
-        <div class="card-panel">
-            <h3>回報問題或訊號異常</h3>
+        <div class="card-panel-main">
+            <h3 class="panel-title">發起新回報</h3>
             <form id="ticketForm" class="support-form">
                 <textarea id="messageInput" class="input-field message-box" placeholder="請詳細描述您遇到的問題，例如：最近下雨天 5G 訊號一直斷線..."></textarea>
-                <button type="submit" class="btn-primary">發送回報</button>
+                <button type="submit" class="btn-black-full">發送回報</button>
             </form>
         </div>
 
-        <div class="card-panel">
-            <h3>歷史回報紀錄</h3>
+        <div class="card-panel-main" style="margin-top: 40px;">
+            <h3 class="panel-title">歷史回報紀錄</h3>
             <div id="ticketList" class="ticket-list">
-                <p class="empty-state">目前沒有任何回報紀錄。</p>
+                <p class="empty-state">正在載入回報紀錄...</p>
             </div>
+            <div id="pagination" class="pagination-container"></div>
         </div>
     </div>
 

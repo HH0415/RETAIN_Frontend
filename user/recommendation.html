@@ -18,7 +18,7 @@
                 <p>電信業者：<span id="curr-provider">-</span></p>
                 <p>目前月租：<span id="curr-bill">-</span></p>
                 <p>實際用量：<span id="curr-usage">-</span></p>
-                <div id="status-text" class="status-box-small">分析中...</div>
+                <div id="status-text" class="status-box-small">正在分析...</div>
             </div>
 
             <div class="card-panel-solid">
@@ -36,19 +36,21 @@
             <table class="main-table">
                 <thead>
                     <tr>
-                        <th>推薦度</th>
+                        <th width="120">推薦度</th>
                         <th>電信業者</th>
                         <th>方案名稱</th>
                         <th>網路流量</th>
                         <th>每月帳單</th>
-                        <th>操作</th>
+                        <th width="100">操作</th>
                     </tr>
                 </thead>
                 <tbody id="alt-plans-body">
-                    </tbody>
+                    <tr><td colspan="6" style="text-align: center; padding: 30px;">載入中...</td></tr>
+                </tbody>
             </table>
+            <div id="pagination" class="pagination-container"></div>
         </div>
-        <div class="savings-banner" id="saving-box">分析中...</div>
+        <div class="savings-banner" id="saving-box">正在計算您的潛在節省金額...</div>
     </div>
     <script src="../shared/guard.js"></script>
     <script src="../shared/nav.js"></script>

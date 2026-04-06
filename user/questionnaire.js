@@ -29,18 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                msg.innerHTML = "<span style='color: #2e7d32;'>資料已更新，正在為您生成建議方案...</span>";
+                if (msg) msg.innerHTML = "<span style='color: #2e7d32;'>資料已更新，正在為您生成建議方案...</span>";
                 
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
-                }, 2000);
+                }, 1500);
             } else {
-                msg.innerHTML = "<span style='color: #d32f2f;'>更新失敗，請檢查權限</span>";
+                if (msg) msg.innerHTML = "<span style='color: #d32f2f;'>更新失敗，請檢查權限</span>";
                 submitBtn.disabled = false;
                 submitBtn.textContent = "開始資費健檢";
             }
         } catch (error) {
-            msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線異常</span>";
+            if (msg) msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線異常</span>";
             submitBtn.disabled = false;
             submitBtn.textContent = "開始資費健檢";
         }
