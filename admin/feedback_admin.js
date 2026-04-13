@@ -107,23 +107,29 @@ function renderCards() {
         const displayStatus = statusMap[statusStr] || statusStr;
         
         const card = document.createElement('div');
-        card.className = 'msg-card';
+        card.className = 'msg-card collapsed'; 
         card.innerHTML = `
-            <div class="msg-header">
-                <h2 class="msg-id">工單編號：#${item.id}</h2>
+            <div class="msg-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <div class="header-left">
+                    <h2 class="msg-id">工單編號：#${item.id}</h2>
+                    <span class="toggle-arrow">▼</span>
+                </div>
                 <div class="status-tag" style="background:${isClosed ? '#eee' : '#000'}; color:${isClosed ? '#666' : '#fff'};">
                     ${displayStatus}
                 </div>
             </div>
-            <div style="margin-bottom:20px;">
-                <b>發起用戶：</b> ${item.username} <br>
-                <b>建立時間：</b> ${item.createdAt}
+            
+            <div class="card-body-content">
+                <div class="user-info-brief">
+                    <b>發起用戶：</b> ${item.username} <br>
+                    <b>建立時間：</b> ${item.createdAt}
+                </div>
+                <div class="chat-flow">${parseThread(item)}</div>
+                ${!isClosed ? `
+                    <textarea class="reply-area" id="reply-text-${item.id}" placeholder="輸入回覆內容..."></textarea>
+                    <button class="submit-btn-full" onclick="sendReply(${item.id})">發送回覆</button>
+                ` : `<div class="closed-banner">此工單已結案，僅供查看</div>`}
             </div>
-            <div class="chat-flow">${parseThread(item)}</div>
-            ${!isClosed ? `
-                <textarea class="reply-area" id="reply-text-${item.id}" placeholder="輸入回覆內容..."></textarea>
-                <button class="submit-btn-full" onclick="sendReply(${item.id})">發送回覆</button>
-            ` : `<div class="closed-banner">此工單已結案，僅供查看</div>`}
         `;
         container.appendChild(card);
     });

@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (res.ok) {
             const userData = await res.json();
             document.getElementById('profile-username').value = userData.username;
-            document.getElementById('profile-name').value = userData.realName || '';
             document.getElementById('profile-phone').value = userData.phone || '';
             document.getElementById('profile-email').value = userData.email || '';
+            
             if (userData.currentProvider) {
                 document.getElementById('profile-provider').value = userData.currentProvider;
                 document.getElementById('profile-bill').value = userData.currentBill;
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         e.preventDefault();
 
         const submitData = {
-            RealName: document.getElementById('profile-name').value.trim(),
             Phone: document.getElementById('profile-phone').value.trim(),
             Email: document.getElementById('profile-email').value.trim(),
             CurrentProvider: document.getElementById('profile-provider').value,
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         if (isNaN(submitData.CurrentBill) || isNaN(submitData.AvgUsage)) {
-            alert("合約費率與用量格式錯誤！");
+            alert("費率或用量格式錯誤！");
             return;
         }
 
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             if (updateRes.ok) {
-                alert("個人資料與方案設定已成功更新！系統將依據新資料重新為您推薦。");
+                alert("個人資料與方案設定已更新成功！");
                 window.location.href = '../user/dashboard.html';
             } else {
                 const errorMsg = await updateRes.text();
@@ -61,7 +60,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         } catch (error) {
             console.error("更新失敗:", error);
-            alert("系統連線異常，請稍後再試。");
+            alert("系統連線異常");
         }
     });
 });
+
+window.logout = () => {
+    localStorage.removeItem('retain_jwt');
+    window.location.href = '../auth/login.html';
+};

@@ -28,7 +28,14 @@ async function initAdminDashboard() {
 }
 
 function renderProviderChart(stats) {
-    const filteredStats = stats.filter(s => s.provider && s.provider.trim() !== "" && s.provider !== "string");
+    const filteredStats = stats.filter(s => 
+        s.provider && 
+        s.provider.trim() !== "" && 
+        s.provider !== "string" && 
+        s.provider !== "Admin" && 
+        s.provider !== "系統管理員"
+    );
+
     const ctx = document.getElementById('providerChart').getContext('2d');
     new Chart(ctx, {
         type: 'doughnut',
@@ -36,21 +43,34 @@ function renderProviderChart(stats) {
             labels: filteredStats.map(s => s.provider),
             datasets: [{
                 data: filteredStats.map(s => s.count),
-                backgroundColor: ['#000', '#444', '#888', '#ccc', '#eee'],
-                borderWidth: 2,
-                borderColor: '#fff'
+                backgroundColor: ['#000000', '#333333', '#666666', '#999999', '#CCCCCC'],
+                hoverBackgroundColor: ['#3498db', '#3498db', '#3498db', '#3498db', '#3498db'],
+                borderWidth: 3,
+                borderColor: '#ffffff'
             }]
         },
         options: { 
             responsive: true, 
             maintainAspectRatio: false,
+            cutout: '60%',
             plugins: {
                 legend: {
                     position: 'bottom',
                     labels: {
-                        boxWidth: 12,
-                        font: { size: 12 },
-                        padding: 20
+                        boxWidth: 15,
+                        font: { size: 12, weight: 'bold' },
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed || 0;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1) + '%';
+                            return `${label}: ${value} 位用戶 (${percentage})`;
+                        }
                     }
                 }
             }
@@ -63,11 +83,12 @@ function renderRiskChart(ratio) {
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['高風險 (溢繳)', '一般用戶'],
+            labels: ['高流失風險', '穩定用戶'],
             datasets: [{
                 data: [ratio.highRisk, ratio.normal],
-                backgroundColor: ['#d32f2f', '#000'],
-                borderWidth: 0
+                backgroundColor: ['#e74c3c', '#000000'],
+                borderWidth: 2,
+                borderColor: '#ffffff'
             }]
         },
         options: { 
@@ -77,9 +98,19 @@ function renderRiskChart(ratio) {
                 legend: {
                     position: 'bottom',
                     labels: {
-                        boxWidth: 12,
-                        font: { size: 12 },
-                        padding: 20
+                        boxWidth: 15,
+                        font: { size: 12, weight: 'bold' },
+                        padding: 15
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.parsed || 0;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1) + '%';
+                            return `佔比: ${percentage} (${value} 人)`;
+                        }
                     }
                 }
             }
@@ -96,12 +127,12 @@ function renderRiskTable(list) {
 
     tbody.innerHTML = list.map(u => `
         <tr>
-            <td style="padding: 12px; border-bottom: 1px solid #eee;">${u.username}</td>
+            <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>${u.username}</b></td>
             <td style="padding: 12px; border-bottom: 1px solid #eee;">${u.currentProvider}</td>
             <td style="padding: 12px; border-bottom: 1px solid #eee;">$ ${u.currentBill}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #eee;">${u.avgUsage}</td>
+            <td style="padding: 12px; border-bottom: 1px solid #eee;">${u.avgUsage === 999 ? '吃到飽' : u.avgUsage + ' GB'}</td>
             <td style="padding: 12px; border-bottom: 1px solid #eee;">${u.suggestPlan}</td>
-            <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: right; color: red; font-weight: bold;">$ ${u.savings}</td>
+            <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: right; color: #e74c3c; font-weight: bold;">$ ${u.savings}</td>
         </tr>
     `).join('');
 }

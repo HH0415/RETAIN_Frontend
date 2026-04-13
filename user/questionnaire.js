@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const provider = document.getElementById('currentProvider').value;
         const bill = document.getElementById('currentBill').value;
         const usage = document.getElementById('avgUsage').value;
+        const phone = document.getElementById('contactPhone').value;
 
         submitBtn.disabled = true;
         submitBtn.textContent = "分析中...";
@@ -24,7 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ 
                     CurrentProvider: provider, 
                     CurrentBill: parseInt(bill), 
-                    AvgUsage: parseInt(usage) 
+                    AvgUsage: parseInt(usage),
+                    Phone: phone
                 })
             });
 

@@ -92,16 +92,23 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        justify-content: flex-start; 
+        padding-top: 50px;
+    }
+
     .login-box {
-        width: 90%; 
         padding: 25px;
+        border-width: 2px; 
     }
     
     .page-title {
         font-size: 1.8rem;
+        margin-bottom: 20px;
     }
 
     .btn-black {
         padding: 12px;
+        font-size: 1.1rem;
     }
 }
