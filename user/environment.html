@@ -6,7 +6,6 @@
     <title>RETAIN | 訊號回報與環境</title>
     <link rel="stylesheet" href="../shared/global.css">
     <link rel="stylesheet" href="environment.css">
-    <link rel="stylesheet" href="environment.js">
 </head>
 <body>
     <nav class="top-nav">
@@ -16,24 +15,34 @@
             <a href="support.html" class="nav-link">客服中心</a>
             <a href="environment.html" class="nav-link active">環境資訊</a>
             <a href="../profile/profile.html" class="nav-link">個人設定</a>
-            
             <button onclick="logout()" class="logout-btn" id="logoutBtn">登出</button>
         </div>
     </nav>
-    
+
     <div class="container">
         <h1>訊號回報與環境</h1>
-        
+
         <div class="card-panel">
-            <h2>當前座標環境：台中市大里區</h2>
-            <div style="border: 2px solid #000; padding: 20px; margin: 20px 0; background: #f9f9f9;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">即時氣候狀態：大雨降雨中</h3>
-                <p style="font-weight: bold; margin-bottom: 10px;">【氣象感知與科普生成】</p>
-                <p>5G 毫米波 (mmWave) 具備高頻率短波長特性，在大雨環境下容易產生「雨衰現象」(Rain Fade)，導致訊號大幅減弱。建議暫時將手機網路設定切換為 4G LTE 以維持連線穩定。</p>
+            <h2 id="locationTitle">當前座標環境：載入中...</h2>
+
+            <div class="county-selector">
+                <label for="countySelect">選擇地區：</label>
+                <select id="countySelect" onchange="loadWeather()">
+                    <option value="">-- 選擇縣市 --</option>
+                </select>
             </div>
+
+            <div id="weatherCard" style="border: 2px solid #000; padding: 20px; margin: 20px 0; background: #f9f9f9;">
+                <h3 id="weatherStatus" style="font-size: 1.5rem; margin-bottom: 10px;">即時氣候狀態：載入中...</h3>
+                <p style="font-weight: bold; margin-bottom: 10px;">【氣象感知與科普生成】</p>
+                <p id="weatherMessage">正在取得即時天氣資料...</p>
+            </div>
+
             <a href="support.html" class="btn-primary" style="display: block; width: 100%; text-align: center; text-decoration: none;">訊號依然異常？前往客服中心回報</a>
         </div>
     </div>
+
     <script src="../shared/guard.js"></script>
+    <script src="environment.js"></script>
 </body>
 </html>

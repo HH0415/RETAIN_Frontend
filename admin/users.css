@@ -1,68 +1,63 @@
 .admin-main-content {
     max-width: 1200px;
     margin: 40px auto;
+    padding: 0 20px;
 }
-
+.header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
 .card-panel-black {
     border: 3px solid #000;
-    padding: 0;
     background-color: #fff;
+    padding: 0;
 }
-
-.btn-black-outline {
-    background: transparent;
-    border: 2px solid #000;
-    padding: 8px 15px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-black-outline:hover {
-    background: #000;
-    color: #fff;
-}
-
 .data-table-black {
     width: 100%;
     border-collapse: collapse;
 }
-
 .data-table-black th {
     background-color: #000;
     color: #fff;
     padding: 15px;
     text-align: left;
 }
-
 .data-table-black td {
     border-bottom: 2px solid #000;
     padding: 15px;
 }
-
-.risk-tag {
+.role-tag {
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 30px;
+    padding: 4px 10px;
+    border: 2px solid #000;
+    font-size: 0.85rem;
     font-weight: bold;
-    font-size: 0.95rem;
-    text-align: center;
-    letter-spacing: 1px;
-    cursor: default;
+}
+.btn-edit {
+    background-color: #3498db;
+    color: white;
     border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
 }
-
-.risk-low {
-    background-color: #e8f5e9;
-    color: #1b5e20;
+.btn-delete {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
 }
-
-.risk-medium {
-    background-color: #fff3e0;
-    color: #e65100;
+.text-center {
+    text-align: center;
 }
-
-.risk-high {
-    background-color: #ffebee;
-    color: #b71c1c;
-    font-weight: 900;
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
 }

@@ -3,52 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN ADMIN | 方案全域管理</title>
+    <title>RETAIN PROVIDER | 自家方案維護</title>
     <link rel="stylesheet" href="../shared/global.css">
     <link rel="stylesheet" href="plans.css">
 </head>
 <body>
     <nav class="top-nav">
-        <a href="dashboard.html" class="nav-logo">RETAIN_ADMIN</a>
+        <a href="dashboard.html" class="nav-logo" id="nav-brand-logo">業者後台</a>
         <div class="nav-right-group">
             <a href="dashboard.html" class="nav-link">儀表板</a>
-            <a href="plans.html" class="nav-link active">方案資料維護</a>
-            <a href="users.html" class="nav-link">使用者管理</a>
-            <a href="feedback_admin.html" class="nav-link">客服回覆中心</a>
+            <a href="plans.html" class="nav-link active">自家方案維護</a>
+            <a href="risk_users.html" class="nav-link">流失預警名單</a>
+            <a href="feedback.html" class="nav-link">客戶回覆</a>
             <button onclick="logout()" class="logout-btn">登出</button>
         </div>
     </nav>
     
     <div class="container admin-main-content">
-        <h1>全系統方案維護</h1>
+        <h1><span id="brand-title"></span> 方案資料維護</h1>
         
         <div class="card-panel-black">
-            <h2 class="card-title" id="form-title">新增 / 修改電信資費方案</h2>
+            <h2 class="card-title" id="form-title">新增 / 修改自家資費方案</h2>
+            
             <form id="add-plan-form" class="plan-form-row">
                 <input type="hidden" id="edit-plan-id" value="">
-                <select id="p-provider" class="input-field" required>
-                    <option value="" disabled selected>請選擇業者</option>
-                    <option value="中華電信">中華電信</option>
-                    <option value="台灣大哥大">台灣大哥大</option>
-                    <option value="遠傳電信">遠傳電信</option>
-                    <option value="台灣之星">台灣之星</option>
-                    <option value="亞太電信">亞太電信</option>
-                </select>
+
+                <input type="text" id="p-provider" class="input-field" readonly style="background-color: #f0f0f0; color: #666; cursor: not-allowed;">
+
                 <input type="text" id="p-name" class="input-field" placeholder="方案名稱" required>
                 <input type="number" id="p-price" class="input-field" placeholder="月租費" required>
                 <input type="text" id="p-limit" class="input-field" placeholder="流量上限 (GB) 或吃到飽" required>
+                
                 <button type="submit" id="add-btn" class="btn-black-rect">新增方案</button>
                 <button type="button" id="cancel-btn" class="btn-black-rect" style="display: none; background-color: #666;">取消</button>
             </form>
         </div>
 
         <div class="card-panel-black" style="margin-top: 30px;">
-            <h2 class="card-title">全市場方案列表</h2>
+            <h2 class="card-title">現有方案列表</h2>
             <div class="table-responsive">
                 <table class="data-table-black">
                     <thead>
                         <tr>
-                            <th>業者</th>
                             <th>方案名稱</th>
                             <th>月租費</th>
                             <th>流量上限</th>
@@ -56,7 +52,7 @@
                         </tr>
                     </thead>
                     <tbody id="plans-list-body">
-                        <tr><td colspan="5" class="text-center">正在從雲端同步方案...</td></tr>
+                        <tr><td colspan="4" style="text-align: center;">正在連線至 RetainDB...</td></tr>
                     </tbody>
                 </table>
                 <div id="pagination" class="pagination-container"></div>

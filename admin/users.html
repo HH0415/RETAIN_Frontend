@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETAIN ADMIN | 使用者管理</title>
+    <title>RETAIN ADMIN | 帳號權限管理</title>
     <link rel="stylesheet" href="../shared/global.css">
     <link rel="stylesheet" href="users.css">
 </head>
@@ -20,11 +20,9 @@
     </nav>
     
     <div class="container admin-main-content">
-        <div style="margin-bottom: 20px;">
-            <button onclick="location.href='dashboard.html'" class="btn-black-outline">← 返回總覽</button>
+        <div class="header-action">
+            <h1>帳號權限管理</h1>
         </div>
-
-        <h1 style="text-align: center; margin-bottom: 30px;">使用者與風險管理</h1>
         
         <div class="card-panel-black">
             <div class="table-responsive">
@@ -32,17 +30,16 @@
                     <thead>
                         <tr>
                             <th>使用者帳號</th>
-                            <th>目前電信</th>
-                            <th>目前月租</th>
-                            <th>平均用量</th>
-                            <th width="150">流失風險評估</th>
+                            <th>角色</th>
+                            <th>Email</th>
+                            <th>所屬品牌 / 目前電信</th>
+                            <th width="200" style="text-align: center;">操作</th>
                         </tr>
                     </thead>
                     <tbody id="user-list-body">
-                        <tr><td colspan="5" style="text-align: center;">正在載入使用者數據...</td></tr>
+                        <tr><td colspan="5" class="text-center">正在載入系統帳號...</td></tr>
                     </tbody>
                 </table>
-                
                 <div id="pagination" class="pagination-container"></div>
             </div>
         </div>

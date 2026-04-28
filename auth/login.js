@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     if (userRole === 'Admin') {
                         window.location.href = '../admin/dashboard.html';
+                    } else if (userRole === 'Provider') {
+                        window.location.href = '../provider/dashboard.html';
                     } else {
                         window.location.href = '../user/dashboard.html';
                     }
@@ -70,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 loginBtn.textContent = "進入系統";
             }
         } catch (error) {
-            console.error("登入錯誤:", error);
             msg.innerHTML = "<span style='color: #d32f2f;'>伺服器連線異常</span>";
             loginBtn.disabled = false;
             loginBtn.textContent = "進入系統";

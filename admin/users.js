@@ -1,125 +1,81 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem('retain_jwt');
+document.addEventListener("DOMContentLoaded", () => {
+    loadAllUsers();
+});
+
+const token = localStorage.getItem('retain_jwt');
+
+async function loadAllUsers() {
     const tableBody = document.getElementById('user-list-body');
-    const paginationContainer = document.getElementById('pagination');
+    try {
+        const res = await fetch('http://localhost:5164/api/AdminUsers', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error();
+        const users = await res.json();
+        
+        tableBody.innerHTML = users.map(user => `
+            <tr>
+                <td><b>${user.username}</b></td>
+                <td><span class="role-tag">${user.role}</span></td>
+                <td>${user.email}</td>
+                <td>${user.role === 'Provider' ? (user.providerBrand || '未設定') : (user.currentProvider || '一般用戶')}</td>
+                <td style="text-align: center;">
+                    <button class="btn-edit" onclick="openEditModal('${user.username}', '${user.role}', '${user.email}', '${user.providerBrand || ''}', '${user.currentProvider || ''}')">修改</button>
+                    <button class="btn-delete" onclick="deleteUser('${user.username}')">停權</button>
+                </td>
+            </tr>
+        `).join('');
+    } catch (err) {
+        tableBody.innerHTML = `<tr><td colspan="5" class="text-center" style="color: red; padding: 20px;">載入失敗</td></tr>`;
+    }
+}
 
-    let allCustomers = [];
-    let allPlans = [];
-    let currentPage = 1;
-    const rowsPerPage = 5; 
+async function openEditModal(username, role, email, brand, currentP) {
+    const newRole = prompt(`修改 ${username} 的角色 (User/Provider):`, role);
+    const newEmail = prompt(`修改 Email:`, email);
+    
+    let payload = {
+        role: newRole || role,
+        email: newEmail || email,
+        providerBrand: brand,
+        currentProvider: currentP
+    };
 
-    async function loadData() {
-        try {
-            const [usersRes, plansRes] = await Promise.all([
-                fetch('http://localhost:5164/api/Users', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }),
-                fetch('http://localhost:5164/api/Plans')
-            ]);
-
-            if (!usersRes.ok) throw new Error("權限不足或 API 錯誤");
-            
-            const users = await usersRes.json();
-            allPlans = await plansRes.json();
-
-            allCustomers = users.filter(u => u.role !== 'Admin');
-
-            renderTable();
-        } catch (err) {
-            tableBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: red; padding: 20px;">${err.message}</td></tr>`;
-            if (paginationContainer) paginationContainer.innerHTML = '';
-        }
+    if (newRole === 'Provider') {
+        payload.providerBrand = prompt("設定所屬電信品牌 (例如：中華電信):", brand);
+        payload.currentProvider = "";
+    } else {
+        payload.currentProvider = prompt("設定目前使用電信 (例如：遠傳電信):", currentP);
+        payload.providerBrand = "";
     }
 
-    function renderTable() {
-        tableBody.innerHTML = '';
-
-        if (allCustomers.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">目前沒有任何使用者資料</td></tr>';
-            if (paginationContainer) paginationContainer.innerHTML = '';
-            return;
-        }
-
-        const startIndex = (currentPage - 1) * rowsPerPage;
-        const endIndex = startIndex + rowsPerPage;
-        const currentData = allCustomers.slice(startIndex, endIndex);
-
-        currentData.forEach(user => {
-            let riskLevel = "低風險";
-            let riskClass = "risk-low";
-
-            const betterPlans = allPlans.filter(p => p.dataLimit >= user.avgUsage && p.monthlyPrice < user.currentBill);
-            
-            if (betterPlans.length > 3) {
-                riskLevel = "極高風險";
-                riskClass = "risk-high";
-            } else if (betterPlans.length > 0) {
-                riskLevel = "中等風險";
-                riskClass = "risk-medium";
-            }
-
-            const usageText = user.avgUsage === 999 ? '吃到飽' : (user.avgUsage || 0) + ' GB';
-
-            const row = `
-                <tr>
-                    <td><b>${user.username}</b></td>
-                    <td>${user.currentProvider || '未填寫'}</td>
-                    <td>$ ${user.currentBill || 0}</td>
-                    <td>${usageText}</td>
-                    <td>
-                        <span class="risk-tag ${riskClass}">${riskLevel}</span>
-                    </td>
-                </tr>
-            `;
-            tableBody.insertAdjacentHTML('beforeend', row);
+    try {
+        const res = await fetch(`http://localhost:5164/api/AdminUsers/${username}`, {
+            method: 'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify(payload)
         });
 
-        renderPagination();
-    }
-
-    function renderPagination() {
-        if (!paginationContainer) return;
-        paginationContainer.innerHTML = '';
-        const totalPages = Math.ceil(allCustomers.length / rowsPerPage);
-
-        if (totalPages <= 1) return;
-
-        const firstBtn = document.createElement('button');
-        firstBtn.className = 'page-btn';
-        firstBtn.innerText = '≪';
-        firstBtn.disabled = currentPage === 1;
-        firstBtn.onclick = () => { currentPage = 1; renderTable(); };
-        paginationContainer.appendChild(firstBtn);
-
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'page-btn';
-        prevBtn.innerText = '＜';
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.onclick = () => { currentPage--; renderTable(); };
-        paginationContainer.appendChild(prevBtn);
-
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement('button');
-            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-            btn.innerText = i;
-            btn.onclick = () => { currentPage = i; renderTable(); };
-            paginationContainer.appendChild(btn);
+        if (res.ok) {
+            alert("修改成功！");
+            loadAllUsers();
+        } else {
+            alert("修改失敗");
         }
-
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'page-btn';
-        nextBtn.innerText = '＞';
-        nextBtn.disabled = currentPage === totalPages;
-        nextBtn.onclick = () => { currentPage++; renderTable(); };
-        paginationContainer.appendChild(nextBtn);
-
-        const lastBtn = document.createElement('button');
-        lastBtn.className = 'page-btn';
-        lastBtn.innerText = '≫';
-        lastBtn.disabled = currentPage === totalPages;
-        lastBtn.onclick = () => { currentPage = totalPages; renderTable(); };
-        paginationContainer.appendChild(lastBtn);
+    } catch (err) {
+        alert("網路連線異常");
     }
+}
 
-    loadData();
-});
+async function deleteUser(username) {
+    if(!confirm(`確定要停用使用者 ${username} 嗎？`)) return;
+    alert("此功能可介接 DELETE API 進行帳號停權");
+}
+
+function logout() {
+    localStorage.removeItem('retain_jwt');
+    window.location.href = '../auth/login.html';
+}
